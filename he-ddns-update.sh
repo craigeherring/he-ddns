@@ -7,17 +7,18 @@
 # use cron to facilitate
 # */5 * * * * root /root/ddns
 #
+# script will update to the public IP the
+# script originates from
+#
 #############
 DDNSNAME="www.vmuglabs.net"
-PASS="VV2T9X1NihmpIYag"
+KEYPASS="VV2T9X1NihmpIYag"
 TMPFILE=/tmp/ddnstmp
 LOGFILE=/var/log/ddns
 
 # use curl
-curl -k -o $TMPFILE "https://dyn.dns.he.net/nic/update" -d "hostname=$DDNSNAME" -d "password=$PASS"
+curl -k -o $TMPFILE "https://dyn.dns.he.net/nic/update" -d "hostname=$DDNSNAME" -d "password=$KEYPASS"
 
-# use wget
-# wget -O $TMPFILE --http-user=$DDNSNAME --http-passwd=$PASS http://dyn.dns.he.net/nic/update?hostname=$DDNSNAME
 
 # log so we know what it did and when
 echo `date` >> $LOGFILE
